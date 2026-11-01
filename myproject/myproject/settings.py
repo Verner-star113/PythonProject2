@@ -137,5 +137,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # (Обычные пользователи смогут входить в систему)
 LOGIN_URL = '/admin/login/'
 
-# Доверяем домену Amvera для безопасной отправки форм (исправляет ошибку 403 CSRF)
-CSRF_TRUSTED_ORIGINS = ['https://amvera.tech']
+# Доверяем обоим протоколам хостинга для безопасного входа
+CSRF_TRUSTED_ORIGINS = [
+    'https://amvera.tech',
+    'http://amvera.tech'
+]
