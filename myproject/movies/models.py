@@ -15,7 +15,7 @@ class Genre(models.Model):
 
 class Movie(models.Model):
     TYPE_CHOICES = [('movie', 'Фильм'), ('series', 'Сериал')]
-    STATUS_CHOICES = [('plan', 'Буду смотреть'), ('watching', 'Смотрю'), ('watched', 'Посмотрено')]
+    STATUS_CHOICES = [('plan', 'Буду смотреть'), ('watching', 'Смотрю'), ('watched', 'Просмотрено')]
 
     # НОВЫЕ ВАРИАНТЫ: Статусы для системы модерации
     MODERATION_CHOICES = [
