@@ -152,3 +152,11 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # 3. Разрешаем отправку кук безопасности через обычный HTTP (необходимо для Amvera)
 CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_SECURE = False
+
+# АВТОМАТИЧЕСКИЙ СОЗДАТЕЛЬ АДМИНА ПРИ СТАРТЕ
+try:
+    from django.contrib.auth.models import User
+    if not User.objects.filter(username='admin').exists():
+        User.objects.create_superuser('admin', 'admin@example.com', 'admin')
+except Exception:
+    pass
