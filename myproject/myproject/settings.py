@@ -137,8 +137,18 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # (Обычные пользователи смогут входить в систему)
 LOGIN_URL = '/admin/login/'
 
-# Доверяем обоим протоколам хостинга для безопасного входа
+# УЛЬТИМАТИВНЫЙ НАБОР НАСТРОЕК БЕЗОПАСНОСТИ ДЛЯ ХОСТИНГА AMVERA:
+
+# 1. Доверяем всем поддоменам amvera.tech для отправки форм
 CSRF_TRUSTED_ORIGINS = [
-    'https://amvera.tech',
-    'http://amvera.tech'
+    'https://*.amvera.tech',
+    'http://*.amvera.tech',
 ]
+
+# 2. Указываем Django, что сайт работает через прокси-сервер Amvera,
+# чтобы он правильно считывал протоколы http/https и не сбрасывал токены
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# 3. Разрешаем отправку кук безопасности через обычный HTTP (необходимо для Amvera)
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
